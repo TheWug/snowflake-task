@@ -91,8 +91,10 @@ func main() {
 			return err
 		}
 
-		// Export the name of the bucket
-		ctx.Export("web-server-name", instance.ID())
+		ctx.Export("web-server-id", instance.ID())
+		ctx.Export("public-key-id", keypair.ID())
+		ctx.Export("public-IP",     instance.PublicIp)
+		ctx.Export("public-DNS",    instance.PublicDns)
 		return nil
 	})
 }
