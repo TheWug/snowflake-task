@@ -24,6 +24,11 @@ func main() {
 		*/
 
 		conf := config.New(ctx, "")
+		script, err := ioutil.ReadFile(conf.Require("deploy-script"))
+		if err != nil {
+			return err
+		}
+
 		pubkey, err := ioutil.ReadFile(conf.Require("public-key-file"))
 		if err != nil {
 			return err
@@ -42,6 +47,7 @@ func main() {
 		instance, err := ec2.NewInstance(ctx, "web-server-basic-demo", &ec2.InstanceArgs{
 			Ami:                 pulumi.String("ami-0d382e80be7ffdae5"), // ubuntu 20.04 x86-64
 			InstanceType:        pulumi.String(ec2.InstanceType_T2_Micro),
+			UserData:            pulumi.String(string(script)),
 			KeyName:             keypair.KeyName,
 		})
 		if err != nil {
