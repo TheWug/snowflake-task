@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
-	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/iam"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,7 +28,7 @@ func main() {
 			SubnetId:	test_subnet.ID(),
 			PrivateIps:	pulumi.StringArray{
 				pulumi.String("172.20.20.20"),
-			}
+			},
 		}
 		iface, err := ec2.NewNetworkInterface(ctx, "test-interface", iface_args)
 		if err != nil {
@@ -46,7 +45,6 @@ func main() {
 				},
 			},
 		}
-		ec2_instance_type := "t2.micro"
 
 		// Create an AWS resource (S3 Bucket)
 		instance, err := ec2.NewInstance(ctx, "web-server-basic-hello", args)
