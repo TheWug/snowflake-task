@@ -1,0 +1,3 @@
+name: snowflake-task
+runtime: go
+description: Terry's Snowflake onboarding task
