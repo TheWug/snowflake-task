@@ -95,6 +95,7 @@ func main() {
 		ctx.Export("public-key-id", keypair.ID())
 		ctx.Export("public-IP",     instance.PublicIp)
 		ctx.Export("public-DNS",    instance.PublicDns)
+		ctx.Export("demo-webpage",  pulumi.Sprintf("http://%s/", instance.PublicIp))
 		return nil
 	})
 }
