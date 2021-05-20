@@ -5,6 +5,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+func pS2A(str pulumi.String) pulumi.StringArray {
+	return pulumi.StringArray {
+		str,
+	}
+}
+
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 		vpc_args := &ec2.VpcArgs{
